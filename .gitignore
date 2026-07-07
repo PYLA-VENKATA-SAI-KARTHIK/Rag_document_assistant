@@ -1,0 +1,33 @@
+# 🔐 NEVER upload secrets
+.env
+
+# Python cache files (auto-generated, not needed)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment (too large, not needed)
+venv/
+env/
+.venv/
+
+# VS Code settings (personal, not needed)
+.vscode/
+
+# Data files (can be large)
+data/*.pdf
+data/*.txt
+
+# AI model cache (very large files)
+*.bin
+*.pt
+*.safetensors
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
