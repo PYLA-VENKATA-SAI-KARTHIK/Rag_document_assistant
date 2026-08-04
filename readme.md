@@ -46,6 +46,16 @@ tests/        → Test cases
 notebooks/    → Experiments
 ```
 
+## 📐 Architecture & Pipeline
+
+```mermaid
+graph TD;
+    A[User Input / Prompt] --> B[Embedding Model];
+    B --> C[Vector Store / Chroma DB];
+    C --> D[Retrieved Context & Grounding];
+    D --> E[LLM / Gemini / OpenAI];
+    E --> F[Structured Output / Response];
+
 ## 👨‍💻 Author
 
 Venkata Sai Karthik Pyla
