@@ -55,6 +55,7 @@ graph TD;
     C --> D[Retrieved Context & Grounding];
     D --> E[LLM / Gemini / OpenAI];
     E --> F[Structured Output / Response];
+```
 
 ## 👨‍💻 Author
 
