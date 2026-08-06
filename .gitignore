@@ -1,5 +1,7 @@
 # 🔐 NEVER upload secrets
 .env
+.env.*
+!.env.example
 
 # Python cache files (auto-generated, not needed)
 __pycache__/
