@@ -9,7 +9,7 @@ import sys
 import warnings
 import logging
 from dotenv import load_dotenv
-from groq import Groq
+from groq import Groq, AuthenticationError
 
 logging.getLogger("sentence_transformers").setLevel(logging.ERROR)
 logging.getLogger("huggingface_hub").setLevel(logging.ERROR)
@@ -22,7 +22,8 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 load_dotenv()
 
 # Setup Groq client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+groq_api_key = os.getenv("GROQ_API_KEY")
+client = Groq(api_key=groq_api_key) if groq_api_key else None
 
 
 def build_prompt(question: str, context_chunks: list) -> str:
@@ -59,26 +60,36 @@ def get_answer(question: str, context_chunks: list) -> str:
 
     print(f"\n🤖 Sending to Groq...")
 
+    if client is None:
+        raise RuntimeError(
+            "GROQ_API_KEY is not set. Add a valid Groq API key to your .env file."
+        )
+
     prompt = build_prompt(question, context_chunks)
 
-    response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a helpful assistant that answers questions based only on provided context."
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        temperature=0.3,
-        max_tokens=500
-    )
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that answers questions based only on provided context."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.3,
+            max_tokens=500
+        )
+    except AuthenticationError as exc:
+        raise RuntimeError(
+            "Groq rejected the API key. Check that GROQ_API_KEY in your .env file is valid."
+        ) from exc
 
     print(f"✅ Got answer from Groq!")
-    return response.choices[0].message.content
+    return response.choices[0].message.content or "I could not generate a response."
 
 
 if __name__ == "__main__":
