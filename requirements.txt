@@ -1,23 +1,11 @@
-# RAG Document Q&A System - Dependencies
-# Install all with: pip install -r requirements.txt
-
-# PDF Processing
 pypdf==4.1.0
-
-# LangChain - AI Application Framework
-langchain==0.1.20
-langchain-community==0.0.38
-
-# Embeddings & Vector Search
-sentence-transformers==2.7.0
+langchain-text-splitters==0.3.8
+sentence-transformers==3.0.1
 faiss-cpu==1.8.0
-
-# LLM
-huggingface-hub==0.23.0
-
-# API
-fastapi==0.111.0
-uvicorn==0.30.0
-
-# Utilities
+groq==0.11.0
+streamlit==1.39.0
 python-dotenv==1.0.1
+numpy==1.26.4
+torch==2.2.2
+transformers==4.44.0
+huggingface-hub==0.24.0

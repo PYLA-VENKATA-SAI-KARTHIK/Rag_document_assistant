@@ -19,11 +19,17 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 # Load API keys from .env
+import streamlit as st
+
 load_dotenv()
 
-# Setup Groq client
-groq_api_key = os.getenv("GROQ_API_KEY")
-client = Groq(api_key=groq_api_key) if groq_api_key else None
+# Works both locally and on Streamlit Cloud!
+try:
+    groq_key = st.secrets["GROQ_API_KEY"]
+except:
+    groq_key = os.getenv("GROQ_API_KEY")
+
+client = Groq(api_key=groq_key)
 
 
 def build_prompt(question: str, context_chunks: list) -> str:
