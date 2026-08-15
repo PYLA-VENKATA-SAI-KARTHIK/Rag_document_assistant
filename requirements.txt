@@ -1,7 +1,7 @@
 pypdf==4.1.0
 langchain-text-splitters==0.3.8
 sentence-transformers==3.0.1
-faiss-cpu==1.8.0
+faiss-cpu==1.15.0
 groq==0.11.0
 streamlit==1.39.0
 python-dotenv==1.0.1
