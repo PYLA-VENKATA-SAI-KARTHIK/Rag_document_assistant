@@ -274,7 +274,7 @@ with left_col:
     st.markdown("""
     **Built by Venkata Sai Karthik Pyla**
     
-    [🔗 GitHub](https://github.com/PYLA-VENKATA-SAI-KARTHIK/rag-document-assistant)
+    [🔗 GitHub](https://github.com/PYLA-VENKATA-SAI-KARTHIK/Rag_document_assistant)
     [💼 LinkedIn](https://www.linkedin.com/in/venkata-sai-karthik-pyla)
     """)
 
